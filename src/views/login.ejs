@@ -124,6 +124,7 @@
       background: rgba(255,77,109,.08);
       color: #8a1730;
       font-weight: 650;
+      line-height: 1.55;
     }
 
     a.link{ color: var(--text); text-decoration:none; font-weight: 750; }
@@ -138,7 +139,7 @@
   <div class="wrap">
     <section class="card">
       <div class="top">
-        <div class="brand"><span class="dot"></span> Lab11 </div>
+        <div class="brand"><span class="dot"></span> Lab11</div>
         <a class="link" href="/">Home</a>
       </div>
 
@@ -147,7 +148,11 @@
 
       <% if (err) { %>
         <div class="alert">
-          <%= err === "missing" ? "Please enter email and password" : "Invalid email or password" %>
+          <%= err === "missing"
+            ? "Please enter email and password."
+            : err === "ratelimit"
+            ? ("Too many login attempts. Please wait " + (retry || "a moment") + " seconds and try again.")
+            : "Invalid email or password." %>
         </div>
       <% } %>
 

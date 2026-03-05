@@ -191,11 +191,21 @@
   <div class="wrap">
     <div class="nav">
       <div class="brand"><span class="dot"></span> Lab11</div>
-      <div>
-        <a href="/">Home</a>
-        <a href="/login">Login</a>
-        <a href="/profile">Profile</a>
-      </div>
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+  <a href="/">Home</a>
+  <a href="/profile">Profile</a>
+
+  <% if (auth && auth.loggedIn) { %>
+    <span style="color: rgba(11,37,69,.7); font-weight:700; padding:9px 12px;">
+      Logged in as <%= auth.user.email %>
+    </span>
+    <form method="POST" action="/logout" style="display:inline; margin:0;">
+      <button class="btn" type="submit" style="padding:9px 12px; border-radius:12px;">Logout</button>
+    </form>
+  <% } else { %>
+    <a href="/login">Login</a>
+  <% } %>
+</div>
     </div>
 
     <div class="grid">
