@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Not logged in</title>
+  <style>
+    :root{
+      --bg1:#eaf6ff;
+      --bg2:#f7fbff;
+      --card:rgba(255,255,255,.78);
+      --stroke:rgba(8, 61, 119, .12);
+      --text:#0b2545;
+      --muted:rgba(11,37,69,.7);
+      --primary:#3aa0ff;
+      --primary2:#6bd6ff;
+      --shadow: 0 18px 60px rgba(11,37,69,.14);
+      --radius:18px;
+      --focus: 0 0 0 4px rgba(58,160,255,.22);
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      background:
+        radial-gradient(1100px 560px at 18% 18%, rgba(107,214,255,.55), transparent 60%),
+        radial-gradient(820px 480px at 82% 35%, rgba(58,160,255,.35), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+    }
+    .snow::before{
+      content:"";
+      position:fixed;
+      inset:-40px;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,.75) 0 1.5px, transparent 3px),
+        radial-gradient(circle at 80% 60%, rgba(255,255,255,.7) 0 2px, transparent 3px);
+      background-size: 320px 320px, 260px 260px, 360px 360px;
+      opacity:.5;
+      animation: drift 16s linear infinite;
+    }
+    @keyframes drift{ from{transform:translateY(-26px)} to{transform:translateY(26px)} }
+
+    .card{
+      width:min(760px, 100%);
+      border:1px solid var(--stroke);
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+    .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 8px;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.2px; }
+    .dot{ width:12px;height:12px;border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary2)); }
+
+    h1{ margin: 8px 0 8px; font-size: 30px; letter-spacing:-.3px; }
+    .sub{ margin:0 0 14px 0; color: var(--muted); line-height:1.6; }
+
+    .msg{
+      border:1px solid rgba(58,160,255,.18);
+      background: rgba(58,160,255,.08);
+      border-radius: 16px;
+      padding: 12px 14px;
+      color: rgba(11,37,69,.85);
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 14px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(58,160,255,.22);
+      background: rgba(255,255,255,.75);
+      color: var(--text);
+      text-decoration:none;
+      font-weight: 850;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 24px rgba(11,37,69,.12); }
+    .btn.primary{
+      border: none;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 14px 34px rgba(58,160,255,.26);
+    }
+  </style>
+</head>
+
+<body class="snow">
+  <section class="card">
+    <div class="top">
+      <div class="brand"><span class="dot"></span> Lab11 </div>
+      <a class="btn" href="/">Home</a>
+    </div>
+
+    <h1>Not logged in</h1>
+    <p class="sub">This page is protected. Please sign in first.</p>
+
+    <div class="msg">
+      <strong>Reason:</strong> <%= message %>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href="/login">Go to Login</a>
+      <a class="btn" href="/">Back to Home</a>
+    </div>
+  </section>
+</body>
+</html>

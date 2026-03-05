@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <style>
+    :root{
+      --bg1:#eaf6ff;
+      --bg2:#f7fbff;
+      --card:rgba(255,255,255,.75);
+      --stroke:rgba(8, 61, 119, .12);
+      --text:#0b2545;
+      --muted:rgba(11,37,69,.7);
+      --primary:#3aa0ff;
+      --primary2:#6bd6ff;
+      --shadow: 0 18px 60px rgba(11,37,69,.14);
+      --radius:18px;
+      --focus: 0 0 0 4px rgba(58,160,255,.22);
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      background:
+        radial-gradient(1200px 600px at 20% 15%, rgba(107,214,255,.55), transparent 60%),
+        radial-gradient(900px 520px at 80% 35%, rgba(58,160,255,.35), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+    }
+
+    .snow::before, .snow::after{
+      content:"";
+      position:fixed;
+      inset:-40px;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,.75) 0 1.5px, transparent 3px),
+        radial-gradient(circle at 80% 60%, rgba(255,255,255,.7) 0 2px, transparent 3px),
+        radial-gradient(circle at 30% 80%, rgba(255,255,255,.6) 0 1.3px, transparent 3px);
+      background-size: 320px 320px, 260px 260px, 360px 360px, 220px 220px;
+      filter: blur(.2px);
+      opacity:.55;
+      animation: drift 14s linear infinite;
+    }
+    .snow::after{
+      opacity:.35;
+      animation-duration: 22s;
+      transform: translateY(-20px);
+    }
+    @keyframes drift{
+      from{ transform: translateY(-30px); }
+      to{ transform: translateY(30px); }
+    }
+
+    .wrap{ width:min(920px, 100%); }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 18px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.55);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 26px rgba(11,37,69,.08);
+      margin-bottom:16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .dot{
+      width:12px;height:12px;border-radius:50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 8px 18px rgba(58,160,255,.35);
+    }
+    .nav a{
+      text-decoration:none;
+      color:var(--text);
+      font-weight:650;
+      padding:9px 12px;
+      border-radius: 12px;
+      border:1px solid transparent;
+    }
+    .nav a:hover{
+      background:rgba(58,160,255,.10);
+      border-color: rgba(58,160,255,.18);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:16px;
+    }
+    @media (max-width: 840px){
+      .grid{ grid-template-columns:1fr; }
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    h1{
+      margin:0 0 8px 0;
+      font-size: 34px;
+      letter-spacing: -.4px;
+      line-height: 1.15;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      line-height:1.6;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(58,160,255,.22);
+      background: rgba(255,255,255,.75);
+      color: var(--text);
+      text-decoration:none;
+      font-weight: 750;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 24px rgba(11,37,69,.12); }
+    .btn.primary{
+      border: none;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 14px 34px rgba(58,160,255,.28);
+    }
+    .btn.primary:hover{ box-shadow: 0 18px 44px rgba(58,160,255,.34); }
+
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(58,160,255,.10);
+      border:1px solid rgba(58,160,255,.16);
+      color: var(--muted);
+      font-weight:650;
+      width:fit-content;
+      margin-top:14px;
+    }
+    .muted{ color:var(--muted); }
+
+    .side h2{
+      margin:0 0 10px 0;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .list{
+      margin:0; padding-left: 18px;
+      color: var(--muted);
+      line-height:1.7;
+    }
+  </style>
+</head>
+<body class="snow">
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand"><span class="dot"></span> Lab11</div>
+      <div>
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/profile">Profile</a>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <h1>Welcome ❄️</h1>
+        <p class="sub">
+          Dashing through the snow. Let’s make it a winter to remember. Feeling frosty. Have an ice day! 
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" href="/login">Go to Login</a>
+          <a class="btn" href="/profile">Open Protected Profile</a>
+        </div>
+
+        <div class="pill">
+          If you’re not logged in, Profile should be blocked by middleware.
+        </div>
+      </section>
+
+      <aside class="card side">
+        <h2>Quick checks</h2>
+        <ul class="list">
+          <li>Register → then Login</li>
+          <li>Profile shows userID & email</li>
+          <li>Logout = clears</li>
+        </ul>
+        <p class="muted" style="margin-top:12px;">
+          winter.. ❄️
+        </p>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
